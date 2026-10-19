@@ -1,0 +1,32 @@
+{
+  "_notes": [
+    "起步规则模板：中文课程/实验报告的图注、表注、小节标签与正文排版。",
+    "用前先跑 docx_scan.py 看本文档的真实 style_id 与字号，改掉下面 body 规则里的",
+    "style_id 和 size_pt —— 不同模板的正文样式 id 不同（本文档示例为 00000e）。",
+    "规则按顺序取第一个命中的，所以越具体的规则要放越前面。",
+    "默认 base_pt=10.5 用于换算 firstLine twips（20 * 字符数 * base_pt）。"
+  ],
+  "defaults": { "base_pt": 10.5 },
+  "rules": [
+    {
+      "name": "figure-caption",
+      "match": { "text_regex": "^图\\s*\\d+-\\d+" },
+      "format": { "size_pt": 9, "bold": false, "align": "center", "clear_indent": true }
+    },
+    {
+      "name": "table-caption",
+      "match": { "text_regex": "^表\\s*\\d+-\\d+" },
+      "format": { "size_pt": 9, "bold": true, "align": "center", "clear_indent": true }
+    },
+    {
+      "name": "label",
+      "match": { "text_in": ["程序截图：", "运行结果：", "文字说明："] },
+      "format": { "size_pt": 12, "bold": true, "clear_indent": true }
+    },
+    {
+      "name": "body",
+      "match": { "style_id": "00000e", "size_pt": 10.5 },
+      "format": { "first_line_indent_chars": 2 }
+    }
+  ]
+}
